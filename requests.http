@@ -1,0 +1,310 @@
+#############################################################################################################
+# JWT TOKEN
+
+### GENERATE JWT TOKEN
+POST http://localhost:3000/api/newtoken/
+apikey: API_KEY
+
+## RESPONSE KEY EXAMPLE
+##eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQxOTIzNDcsImV4cCI6MTYyNDE5NT...
+
+
+#############################################################################################################
+# TOKEN MODELS
+## THIS IS CONTROLLER FOR MONGO DB MODELS
+
+### NEW SESSION
+POST http://localhost:3000/api/newsession/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"webhook":"http://localhost:3000/",
+  "clientID":"id",
+  "serverToken":"token",
+  "clientToken":"token",
+  "encKey":"enckey",
+  "macKey":"mackey"
+}
+
+### SESSIONS LIST
+GET http://localhost:3000/api/sessionlist/
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+### SESSION UPDATE
+PUT http://localhost:3000/api/sessionupdate/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"webhook":"http://localhost:3000/"
+}
+
+### FIND SESSION
+POST http://localhost:3000/api/findsession/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+### DELETE SESSION
+DELETE  http://localhost:3000/api/deletesession/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+
+#############################################################################################################
+# SESSION
+
+### START NEW SESSION
+POST http://localhost:3000/api/start/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"webhook":"http://localhost:3000/"
+}
+
+### CLOSE SESSION
+POST http://localhost:3000/api/close/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+### CHECK SESSION STATUS
+GET http://localhost:3000/api/checkstatus/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+#############################################################################################################
+# QR CODE
+
+### GET QR CODE
+GET http://localhost:3000/api/qrcode/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+#############################################################################################################
+# CHAT
+
+### GET ALL CHATS
+POST http://localhost:3000/api/getchats/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+### GET MESSAGES
+POST http://localhost:3000/api/getmessages/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"isgroup":false
+}
+
+### READ MESSAGES
+POST http://localhost:3000/api/readmessage/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"isgroup":false,
+  "unread": false // true para marcar a mensagem como não lida.
+}
+
+### DELETE MESSAGES
+POST http://localhost:3000/api/deletemessage/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+  "messageid":"3AAEE9AFB7B55CE2368E",
+	"isgroup":false,
+  "isdelete": false // true deletar a mensagem para todos
+}
+
+### GET ALL GROUPS
+POST http://localhost:3000/api/getgroups/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+
+### GET GROUPS PARTICIPANTS
+POST http://localhost:3000/api/getparticipants/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+  	"chats":["553498624453-1616972770@g.us","553498624453-1616972770@g.us"]
+}
+
+### UPDATE PRESENCE
+POST http://localhost:3000/api/updatepresence/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"isgroup":false,
+  "presencetype": "available" //types: available / composing / recording / paused
+}
+
+
+#############################################################################################################
+# MESSAGE
+
+### SEND MESSAGE // TEXT MESSAGE
+POST http://localhost:3000/api/sendmessage/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"message":"olá",
+	"isgroup":false
+}
+
+### SEND FILE 
+POST http://localhost:3000/api/sendfile/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"message":"olá",
+  "base64file":"STRING-BASE64",
+	"isgroup":false
+}
+
+
+### SEND IMAGE 
+POST http://localhost:3000/api/sendimage/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"message":"olá",
+  "base64image":"STRING-BASE64",
+	"isgroup":false
+}
+
+
+### SEND AUDIO 
+POST http://localhost:3000/api/sendaudio/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"message":"olá",
+  "base64audio":"STRING-BASE64",
+	"isgroup":false
+}
+
+### QUOTE MESSAGE 
+POST http://localhost:3000/api/quoted/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"message":"ok",
+	"isgroup":false,
+	"replyid":"3AAEE9AFB7B55CE2368E" // Message id to quote
+}
+
+#############################################################################################################
+# PERSON
+
+### GET PROFILE PIC
+POST http://localhost:3000/api/getprofilepic/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"isgroup":false
+}
+
+
+### GET PERSON STATUS
+POST http://localhost:3000/api/getpersonstatus/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"isgroup":false
+}
+
+
+### CHECK NUMBER IS AVAIBLE
+POST http://localhost:3000/api/checknumber/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
+
+{
+	"phone":"5534000000000",
+	"isgroup":false
+}
+
+
+
+#############################################################################################################
+# PHONE
+
+### GET PHONE INFOS
+GET  http://localhost:3000/api/phoneinfos/?session=${sessionname}
+Accept: application/json
+Content-Type: application/json/
+apikey: API_KEY
+x-access-token: ${JWT-TOKEN}
