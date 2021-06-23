@@ -94,6 +94,7 @@ export async function Create(req, res) {
     })
     try {
         const Retorno = await APISession[session].connect()
+        console.log(APISession[session])
         SessionInfos[session] = APISession[session].user
         SessionStatus[session] = 'CONNECTED'
         let fullMessage = {

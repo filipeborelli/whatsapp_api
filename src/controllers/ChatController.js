@@ -43,10 +43,12 @@ export async function GetMessages(req, res) {
     const { phone, isgroup } = req.body
     let prefix = isgroup ? '@g.us' : '@c.us'
     try {
+        console.log(phone + prefix)
         const Phone_Number = await APISession[session].isOnWhatsApp(`${phone}${prefix}`)
         const messages = await APISession[session].loadMessages(Phone_Number.jid, 25)
         return res.status(200).json(messages)
     } catch (e) {
+        console.log(e)
         return res.status(400).json({ status: false, message: 'Error' })
     }
 }

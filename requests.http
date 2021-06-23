@@ -3,7 +3,7 @@
 
 ### GENERATE JWT TOKEN
 POST http://localhost:3000/api/newtoken/
-apikey: API_KEY
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
 
 ## RESPONSE KEY EXAMPLE
 ##eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQxOTIzNDcsImV4cCI6MTYyNDE5NT...
@@ -17,11 +17,11 @@ apikey: API_KEY
 POST http://localhost:3000/api/newsession/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
-	"webhook":"http://localhost:3000/",
+  "webhook":"http://localhost:3000/",
   "clientID":"id",
   "serverToken":"token",
   "clientToken":"token",
@@ -33,15 +33,15 @@ x-access-token: ${JWT-TOKEN}
 GET http://localhost:3000/api/sessionlist/
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQyMjQ3NDgsImV4cCI6MTYyNDIyODM0OH0.RuJu7sHChsrqmSTVDkrORQUTiqIkddvWVUhZKYPoX0s
 
 ### SESSION UPDATE
 PUT http://localhost:3000/api/sessionupdate/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"webhook":"http://localhost:3000/"
@@ -51,26 +51,26 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/findsession/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 ### DELETE SESSION
 DELETE  http://localhost:3000/api/deletesession/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 
 #############################################################################################################
 # SESSION
 
 ### START NEW SESSION
-POST http://localhost:3000/api/start/?session=${sessionname}
+POST http://localhost:3000/api/start/?session=filipe
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQyMjQxNTYsImV4cCI6MTYyNDIyNzc1Nn0.4B0yf7GVJmL87HHmG3ARtU0ng1QjlzRbJj0QFMNu1sU
 
 {
 	"webhook":"http://localhost:3000/"
@@ -80,54 +80,54 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/close/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 ### CHECK SESSION STATUS
 GET http://localhost:3000/api/checkstatus/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQyMjM1MTYsImV4cCI6MTYyNDIyNzExNn0.J_YbCiCAQWXPSencaRbrIFSz_jLsz8ZPslEvbWXS28o
 
 #############################################################################################################
 # QR CODE
 
 ### GET QR CODE
-GET http://localhost:3000/api/qrcode/?session=${sessionname}
+GET http://localhost:3000/api/qrcode/?session=filipe
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQyMjQxNTYsImV4cCI6MTYyNDIyNzc1Nn0.4B0yf7GVJmL87HHmG3ARtU0ng1QjlzRbJj0QFMNu1sU
 
 #############################################################################################################
 # CHAT
 
 ### GET ALL CHATS
-POST http://localhost:3000/api/getchats/?session=${sessionname}
+POST http://localhost:3000/api/getchats/?session=filipe
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQyMjQxNTYsImV4cCI6MTYyNDIyNzc1Nn0.4B0yf7GVJmL87HHmG3ARtU0ng1QjlzRbJj0QFMNu1sU
 
 ### GET MESSAGES
-POST http://localhost:3000/api/getmessages/?session=${sessionname}
+POST http://localhost:3000/api/getmessages/?session=filipe
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiV2hhdHNBcHAiLCJpYXQiOjE2MjQyMjQxNTYsImV4cCI6MTYyNDIyNzc1Nn0.4B0yf7GVJmL87HHmG3ARtU0ng1QjlzRbJj0QFMNu1sU
 
 {
-	"phone":"5534000000000",
-	"isgroup":false
+	"phone": "5534992525666",
+	"isgroup": false
 }
 
 ### READ MESSAGES
 POST http://localhost:3000/api/readmessage/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -139,8 +139,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/deletemessage/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -153,16 +153,16 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/getgroups/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 
 ### GET GROUPS PARTICIPANTS
 POST http://localhost:3000/api/getparticipants/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
   	"chats":["553498624453-1616972770@g.us","553498624453-1616972770@g.us"]
@@ -172,8 +172,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/updatepresence/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -189,8 +189,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/sendmessage/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -202,8 +202,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/sendfile/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -217,8 +217,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/sendimage/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -232,8 +232,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/sendaudio/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -246,8 +246,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/quoted/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -263,8 +263,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/getprofilepic/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -276,8 +276,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/getpersonstatus/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -289,8 +289,8 @@ x-access-token: ${JWT-TOKEN}
 POST http://localhost:3000/api/checknumber/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
 
 {
 	"phone":"5534000000000",
@@ -306,5 +306,5 @@ x-access-token: ${JWT-TOKEN}
 GET  http://localhost:3000/api/phoneinfos/?session=${sessionname}
 Accept: application/json
 Content-Type: application/json/
-apikey: API_KEY
-x-access-token: ${JWT-TOKEN}
+api_key: 7hC8qYQPU12BptnjeVJ5ZX0cuLMdIbvSTrkoNKDWxEwm3g9HlaRFfGy6AO4zsi
+x-acess-token: ${JWT-TOKEN}
