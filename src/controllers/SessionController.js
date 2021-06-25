@@ -1,13 +1,15 @@
 import { WAConnection } from '@adiwajshing/baileys'
-import { QRCodeArr, APISession, SessionStatus, SessionInfos } from '../util/SessionUtil'
+import { QRCodeArr, APISession, SessionStatus, SessionInfos, WebHookUrl } from '../util/SessionUtil'
 import { PostWebHook } from '../services/CallWebHook'
 import { CheckSession, SaveSession, SessionDelete } from '../services/CheckSession'
 import QRCode from 'qrcode'
 import configs from '../configs/configs.json'
+
 export async function Create(req, res) {
     const { session } = req.query
     const { webhook } = req.body
     const WAC = new WAConnection()
+    WebHookUrl[session] = webhook
     APISession[session] = WAC
     SessionStatus[session] = 'STARTING'
     let fullMessage = {
@@ -17,7 +19,7 @@ export async function Create(req, res) {
         session: session,
         status: 'STARTING',
     }
-    await PostWebHook(session, fullMessage)
+    await PostWebHook(session, fullMessage, WebHookUrl[session])
     APISession[session].browserDescription = [configs.api_name, configs.browser_name, configs.browser_version]
     let Client_Session = await CheckSession(session, res)
     if (Client_Session) {
@@ -44,7 +46,7 @@ export async function Create(req, res) {
             session: session,
             base64qrcode: img,
         }
-        await PostWebHook(session, qrcodemessages)
+        await PostWebHook(session, qrcodemessages, WebHookUrl[session])
     })
     if (!Client_Session) res.status(200).json({ status: true, message: 'QRCODE' })
     APISession[session].on('close', async close => {
@@ -57,7 +59,7 @@ export async function Create(req, res) {
                 session: session,
                 status: 'DISCONNECTED',
             }
-            await PostWebHook(session, statusmessages)
+            await PostWebHook(session, statusmessages, WebHookUrl[session])
             await SessionDelete(restaurant_id, session)
         } else return false
     })
@@ -71,7 +73,7 @@ export async function Create(req, res) {
                 session: session,
                 status: 'DISCONNECTED',
             }
-            await PostWebHook(session, statusmessages)
+            await PostWebHook(session, statusmessages, WebHookUrl[session])
             await SessionDelete(restaurant_id, session)
         }
     })
@@ -89,13 +91,11 @@ export async function Create(req, res) {
                 session: session,
                 content: messageBody,
             }
-            await PostWebHook(session, fullMessage)
+            await PostWebHook(session, fullMessage, WebHookUrl[session])
         } else return true
     })
     try {
         const Retorno = await APISession[session].connect()
-        console.log(APISession[session])
-        SessionInfos[session] = APISession[session].user
         SessionStatus[session] = 'CONNECTED'
         let fullMessage = {
             type: 'session-update',
@@ -104,10 +104,11 @@ export async function Create(req, res) {
             session: session,
             status: 'CONNECTED',
         }
-        await PostWebHook(session, fullMessage)
+        await PostWebHook(session, fullMessage, WebHookUrl[session])
         let SessionInfos = JSON.parse(JSON.stringify(APISession[session].base64EncodedAuthInfo(), null, 2))
         await SaveSession(session, webhook, SessionInfos, res)
     } catch (e) {
+        console.log(e)
         return res.status(400).json({ status: false, message: 'Session has closed, please try now.' })
     }
 }
@@ -122,7 +123,7 @@ export async function CloseSession(req, res) {
             session: session,
             status: 'DISCONNECTED',
         }
-        await PostWebHook(session, fullMessage)
+        await PostWebHook(session, fullMessage, WebHookUrl[session])
         APISession[session].close()
         return res.status(200).json({ status: false, message: 'Session Closed' })
     } catch (e) {
@@ -133,7 +134,7 @@ export async function CloseSession(req, res) {
 export async function PhoneInfos(req, res) {
     const { session } = req.query
     try {
-        return res.status(200).json({ status: false, infos: SessionInfos[session] })
+        return res.status(200).json({ status: false, infos: APISession[session].user })
     } catch (e) {
         return res.status(400).json({ status: false, message: 'Error' })
     }

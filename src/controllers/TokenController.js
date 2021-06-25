@@ -53,6 +53,7 @@ export async function SessionDelete(req, res) {
         await ClientSession.findByIdAndRemove(delete_id._id)
         return res.status(200).json({ status: true, message: 'Session Deleted' })
     } catch (err) {
+        console.log(err)
         return res.status(400).json({ status: false, message: 'Error' })
     }
 }

@@ -23,7 +23,8 @@ export async function SaveSession(session, webhook, SessionInfos, res) {
         })
         return true
     } catch (err) {
-        return res.status(400).json({ status: false, message: 'Register failed' })
+        console.log(err)
+        return { status: false, message: 'Register failed' }
     }
 }
 export async function SessionDelete(session) {

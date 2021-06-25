@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/index.js"],"names":["port","process","env","PORT","app","listen"],"mappings":";;AAAA;;AACA,IAAMA,OAAOC,QAAQC,GAAR,CAAYC,IAAZ,IAAoB,IAAjC;AACAC,SAAIC,MAAJ,CAAWL,IAAX,EAAiB,SAAjB","file":"index.js","sourcesContent":["import { app } from './app';\r\nconst port = process.env.PORT || 4000;\r\napp.listen(port, \"0.0.0.0\");"]}
