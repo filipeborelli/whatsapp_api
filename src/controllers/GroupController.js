@@ -1,6 +1,7 @@
 import moment from 'moment'
 import { APISession } from '../util/SessionUtil'
 import { WAGroupParticipant } from '@adiwajshing/baileys'
+import _ from 'lodash'
 export async function GetGroups(req, res) {
     const { session } = req.query
     let chatArray = []
@@ -20,8 +21,8 @@ export async function GetGroups(req, res) {
             if (allChats[i].name) Name = allChats[i].name
             else Name = allChats[i].jid.replace('@s.whatsapp.net', '')
 
-            if (LastMessage[LengthMessages].message) MessagePresence = LastMessage[LengthMessages].message.conversation
-            else MessagePresence = 'Não foi possível carregar as mensagens anteriores'
+            // if (LastMessage[LengthMessages].message) MessagePresence = LastMessage[LengthMessages].message.conversation
+            //else MessagePresence = 'Não foi possível carregar as mensagens anteriores'
             let PPIMAGE = null
             try {
                 PPIMAGE = await APISession[session].getProfilePicture(`${phonePP}@c.us`)
@@ -37,7 +38,6 @@ export async function GetGroups(req, res) {
                         phone: allChats[i].jid.replace('@s.whatsapp.net', ''),
                         title: Name,
                         image: PPIMAGE,
-                        lastchat: MessagePresence,
                     },
                 ]
             }
@@ -60,6 +60,6 @@ export async function GetGroupMembers(req, res) {
             chatarry = [...chatarry, { phone: phone.replace('@s.whatsapp.net', '') }]
         }
     }
-    let newvalues = chatarry.filter((v, i, a) => a.findIndex(t => t.id === v.id) === i)
+    let newvalues = _.uniqBy(chatarry, 'phone')
     return res.status(200).json(newvalues)
 }
