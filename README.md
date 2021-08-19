@@ -12,10 +12,11 @@
 | Structure                                                  | ✔ |
 | Multiple Sessions                                          | ✔ |
 | Send **text, image, video and docs**                       | ✔ |
-| Get **contacts list**                                      |   |
+| Get **contacts list**                                      | ✔ |
+| Get **groups list**                                        | ✔ |
 | Receive messages                                           | ✔ |
-| Open/Close Session                                         |   |
-| Webhook                                                    |   |
+| Open/Close Session                                         | ✔ |
+| Webhook                                                    | ✔ |
 
 
 ## Todo
